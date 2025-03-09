@@ -1,0 +1,36 @@
+name: Deploy Vue + React App
+
+on:
+  push:
+    branches:
+      - main  # CI/CD срабатывает при пуше в main
+  pull_request:
+    branches:
+      - main  # Проверки при PR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Клонирование репозитория
+        uses: actions/checkout@v3
+
+      - name: 🔧 Установка Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Или версия, которую ты используешь
+          cache: npm
+
+      - name: 📦 Установка зависимостей
+        run: npm install
+
+      - name: 🔨 Сборка проекта
+        run: npm run build
+
+      - name: 🚀 Деплой на GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
