@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+.light-mode {
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  color: #333;
+}
+
+.dark-mode {
+  background: linear-gradient(to right, #232526, #414345);
+  color: white;
+}
+
+.purple-mode {
+  background: linear-gradient(to right, #6a3093, #a044ff);
+  color: white;
+}
+
+.green-mode {
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  color: white;
+}
+
+.orange-mode {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+}
+
+/* Контейнер */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.light-mode .theme-toggle {
+  color: black;
+}
+
+.dark-mode .theme-toggle,
+.purple-mode .theme-toggle,
+.green-mode .theme-toggle,
+.orange-mode .theme-toggle {
+  color: white;
+}
+
+/* Карточка */
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Убрали увеличение и размытие */
+.card:hover {
+  transform: none;
+  backdrop-filter: none;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+/* Поля ввода */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.3s;
+}
+
+input:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
+}
+
+/* Кнопка */
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* Ошибка */
+.error {
+  color: red;
+  font-size: 16px;
+  margin-top: 10px;
+  font-weight: bold;
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Анимация ошибки */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Анимация появления случайного числа */
+.random-number {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
