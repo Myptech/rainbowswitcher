@@ -2,10 +2,10 @@
   "name": "rainbowswitcher",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Myptech/rainbowswitcher/",
+  "homepage": "https://Myptech.github.io/rainbowswitcher/",
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
