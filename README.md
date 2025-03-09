@@ -1,12 +1,74 @@
-# React + Vite
+**Отчёт по применению CI/CD в проекте
+**
+**Описание проекта
+**Данный проект представляет собой веб-приложение, разработанное с использованием React и Vite. Для автоматизации процессов сборки, тестирования и деплоя был реализован CI/CD-процесс с использованием GitHub Actions и GitHub Pages. Это позволяет обеспечить стабильность кода, быстрое развертывание и минимизировать возможные ошибки при интеграции новых изменений.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Цели CI/CD
+**Целью внедрения CI/CD является автоматизация и оптимизация процесса разработки, включая:
 
-Currently, two official plugins are available:
+- **Непрерывную интеграцию (Continuous Integration)**: автоматическая проверка и тестирование кода при каждом коммите или пулл-реквесте.
+- **Непрерывную доставку (Continuous Deployment)**: автоматическое развертывание приложения после успешного прохождения всех проверок.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Использованные инструменты и технологии
+- **GitHub Actions** – для автоматизации процессов сборки, тестирования и развертывания;
+- **Node.js** – для установки зависимостей и сборки проекта;
+- **Vite** – для быстрой разработки и сборки фронтенд-приложения;
+- **gh-pages** – для деплоя проекта на GitHub Pages;
+- **ESLint** – для статического анализа кода.
 
-## Expanding the ESLint configuration
+Описание пайплайна
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+GitHub Actions настроен таким образом, чтобы автоматически запускать сборку, тестирование и деплой при пуше в ветку `main`. Пайплайн состоит из следующих шагов:
+
+```yaml
+name: CI/CD Pipeline for React App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        run: npm run deploy
+```
+
+Объяснение шагов:
+1. **Checkout repository** – клонирование репозитория на виртуальную машину для выполнения последующих шагов.
+2. **Set up Node.js** – установка нужной версии Node.js и кеширование зависимостей.
+3. **Install dependencies** – установка всех необходимых зависимостей проекта.
+4. **Lint code** – статический анализ кода с помощью ESLint для выявления ошибок и предупреждений.
+5. **Build project** – сборка проекта с использованием Vite.
+6. **Deploy to GitHub Pages** – автоматический деплой собранного проекта на GitHub Pages.
+
+Скриншоты успешного выполнения пайплайна
+*(Тут можно вставить скриншоты из GitHub Actions)*
+
+Заключение
+Внедрение CI/CD в проект позволило значительно упростить процесс развертывания, сделав его автоматизированным и предсказуемым. Теперь каждый новый коммит проходит проверку, тестирование и автоматически развёртывается, что позволяет разработке идти быстрее и минимизировать количество ошибок. Использование GitHub Actions и GitHub Pages обеспечивает стабильность и удобство работы с проектом.
+
