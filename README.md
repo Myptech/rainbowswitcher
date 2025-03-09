@@ -20,43 +20,6 @@
 
 GitHub Actions настроен таким образом, чтобы автоматически запускать сборку, тестирование и деплой при пуше в ветку `main`. Пайплайн состоит из следующих шагов:
 
-```yaml
-name: CI/CD Pipeline for React App
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Lint code
-        run: npm run lint
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        run: npm run deploy
-```
 
 Объяснение шагов:
 1. **Checkout repository** – клонирование репозитория на виртуальную машину для выполнения последующих шагов.
